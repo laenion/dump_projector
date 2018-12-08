@@ -16,7 +16,7 @@ Example: `dump_projector application.exe application.swf`\r\n");
       return 1;
    }
 
-   hfInput = fopen(argv[1], "r");
+   hfInput = fopen(argv[1], "rb");
    if (hfInput == NULL) {
       printf("Cannot open input file for reading!\r\n");
    } else {
@@ -28,7 +28,7 @@ Example: `dump_projector application.exe application.swf`\r\n");
          if (hMemHeap != NULL) {
 	    fseek(hfInput, szFile-*(uint32_t*)&dataEnd[4], SEEK_SET);
             lpNumberOfBytesRW = fread(hMemHeap, 1, *(uint32_t*)&dataEnd[4], hfInput);
-            hfOutput = fopen(argv[2], "w");
+            hfOutput = fopen(argv[2], "wb");
             if (hfOutput == NULL) {
                printf("Cannot create output file for writing!\r\n");
             } else {
